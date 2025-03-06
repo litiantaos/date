@@ -8,27 +8,21 @@ const getBaseUrl = (path) => {
   const isProd = import.meta.env.PROD
 
   if (isProd) {
-    // 生产环境直接使用完整URL
     if (path.startsWith('/hitokoto')) {
       return `https://v1.hitokoto.cn`
-    } else if (path.startsWith('/jinrishici')) {
-      return `https://v2.jinrishici.com${path.replace('/jinrishici', '')}`
     }
   }
 
-  // 开发环境使用相对路径，依赖Vite代理
+  // 其他情况都使用相对路径
   return path
 }
 
 const fetchFromHitokoto = async () => {
-  const url = getBaseUrl('/hitokoto', {
+  const url = getBaseUrl('/hitokoto')
+  const response = await fetch(url, {
     method: 'GET',
     mode: 'cors',
-    headers: {
-      'Content-Type': 'application/json',
-    },
   })
-  const response = await fetch(url)
   return response.json()
 }
 
@@ -37,10 +31,7 @@ const fetchFromJinrishici = async (token) => {
   const response = await fetch(url, {
     method: 'GET',
     mode: 'cors',
-    headers: {
-      'Content-Type': 'application/json',
-      ...(token ? { 'X-User-Token': token } : {}),
-    },
+    headers: token ? { 'X-User-Token': token } : {},
   })
   const data = await response.json()
   return data.data
@@ -84,7 +75,6 @@ export const fetchSentence = async (date) => {
       return await fetchFn()
     } catch (error) {
       console.error(`数据源获取失败:`, error)
-      // 继续尝试下一个数据源
     }
   }
 

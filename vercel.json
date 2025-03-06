@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/jinrishici/:path*",
+      "destination": "https://v2.jinrishici.com/:path*"
+    }
+  ]
+}
