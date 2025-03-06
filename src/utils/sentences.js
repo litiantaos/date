@@ -2,13 +2,33 @@ import { state } from '../stores'
 
 const SHICI_TOKEN = 'shici_token'
 
+// 根据环境确定基础URL
+const getBaseUrl = (path) => {
+  // 判断是否为生产环境
+  const isProd = import.meta.env.PROD
+
+  if (isProd) {
+    // 生产环境直接使用完整URL
+    if (path.startsWith('/hitokoto')) {
+      return `https://v1.hitokoto.cn${path.replace('/hitokoto', '')}`
+    } else if (path.startsWith('/jinrishici')) {
+      return `https://v2.jinrishici.com${path.replace('/jinrishici', '')}`
+    }
+  }
+
+  // 开发环境使用相对路径，依赖Vite代理
+  return path
+}
+
 const fetchFromHitokoto = async () => {
-  const response = await fetch('/hitokoto')
+  const url = getBaseUrl('/hitokoto')
+  const response = await fetch(url)
   return response.json()
 }
 
 const fetchFromJinrishici = async (token) => {
-  const response = await fetch('/jinrishici/sentence', {
+  const url = getBaseUrl('/jinrishici/sentence')
+  const response = await fetch(url, {
     headers: token ? { 'X-User-Token': token } : {},
   })
   const data = await response.json()
@@ -20,7 +40,8 @@ const getShiciToken = async () => {
 
   if (!token) {
     try {
-      const response = await fetch('/jinrishici/token')
+      const url = getBaseUrl('/jinrishici/token')
+      const response = await fetch(url)
       const { status, data } = await response.json()
       if (status === 'success') {
         token = data

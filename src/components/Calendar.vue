@@ -171,5 +171,5 @@ const handleTodayClick = ({ isCurrentMonth }) => {
 // 提供数据给子组件
 provide('daysInfo', daysInfo)
 
-console.log(daysInfo.value)
+// console.log(daysInfo.value)
 </script>
