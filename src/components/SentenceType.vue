@@ -18,6 +18,5 @@ import { state, setSentenceType } from '../stores'
 
 const switchType = (index) => {
   setSentenceType(index)
-  // console.log(state.sentenceType)
 }
 </script>
