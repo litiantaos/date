@@ -1,0 +1,65 @@
+@import 'tailwindcss';
+
+@layer base {
+  body {
+    @apply font-mono text-sm text-gray-600;
+  }
+
+  button:not(:disabled),
+  [role='button']:not(:disabled) {
+    @apply h-6.5 cursor-pointer px-2 text-xs transition-colors active:bg-gray-200 sm:hover:bg-gray-100;
+  }
+
+  /* 过渡动画 */
+  .v-enter-active,
+  .v-leave-active {
+    transition: opacity 0.3s;
+  }
+
+  .v-enter-from,
+  .v-leave-to {
+    opacity: 0;
+  }
+
+  .fade-zoom-enter-active,
+  .fade-zoom-leave-active {
+    transition:
+      transform 0.3s,
+      opacity 0.3s;
+  }
+
+  .fade-zoom-enter-from,
+  .fade-zoom-leave-to {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+
+  .move-up-enter-active,
+  .move-up-leave-active {
+    transition:
+      transform 0.3s,
+      opacity 0.3s;
+  }
+
+  .move-up-enter-from,
+  .move-up-leave-to {
+    transform: translateY(10px);
+    opacity: 0;
+  }
+
+  .list-move,
+  .list-enter-active,
+  .list-leave-active {
+    transition: all 0.3s;
+  }
+
+  .list-enter-from,
+  .list-leave-to {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+
+  .list-leave-active {
+    position: absolute;
+  }
+}
