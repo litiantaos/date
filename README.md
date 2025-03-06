@@ -2,7 +2,7 @@
 
 一款优雅的日历卡片应用，融合了中国传统历法与现代设计美学，不仅提供日历功能，还能为每一天带来诗意与灵感。
 
-<video src="./demo/demo.mp4" controls></video>
+![应用演示](./demo/demo.gif)
 
 ## 特性
 
