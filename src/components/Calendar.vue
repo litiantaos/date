@@ -33,7 +33,7 @@
     <Transition>
       <div
         v-if="isExpanded"
-        class="pointer-events-none fixed top-0 right-0 left-0 z-10 h-1/5 bg-linear-to-b from-white to-transparent"
+        class="pointer-events-none fixed top-0 right-0 left-0 z-10 h-1/4 bg-linear-to-b from-white to-transparent"
       />
     </Transition>
   </div>

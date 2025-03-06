@@ -12,13 +12,15 @@
       <SentenceType />
 
       <div class="flex items-center rounded-sm border border-gray-200">
-        <button @click="$emit('prev-month')">
+        <button @click="$emit('prev-month')" class="px-1">
           <RiArrowLeftSLine size="18px" />
         </button>
 
-        <button @click="handleTodayClick">今天</button>
+        <button @click="handleTodayClick" class="border-x border-gray-200">
+          今天
+        </button>
 
-        <button @click="$emit('next-month')">
+        <button @click="$emit('next-month')" class="px-1">
           <RiArrowRightSLine size="18px" />
         </button>
       </div>

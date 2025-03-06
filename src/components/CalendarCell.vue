@@ -2,7 +2,7 @@
   <div
     :class="[
       'absolute flex cursor-pointer flex-col items-center border-gray-200 transition-all duration-500 will-change-[transform,width,height]',
-      isExpanded ? 'rounded-sm border p-4' : 'border-t border-l p-2',
+      isExpanded ? 'rounded-sm border p-4' : 'border-t p-2',
       cellClasses,
     ]"
     :style="cellStyle"
@@ -19,10 +19,10 @@
 
     <div
       class="transition-[margin] duration-500"
-      :class="isActive ? 'mt-10' : 'mt-3'"
+      :class="isExpanded ? 'mt-10' : 'mt-3'"
     >
       <!-- 农历月日 -->
-      <TransitionGroup name="list" tag="div" class="flex">
+      <TransitionGroup name="list" tag="div" class="flex justify-center">
         <div v-if="isActiveDelay" key="mon">{{ day.lunarMonCN }}</div>
         <div key="day">{{ day.lunarDayCN }}</div>
       </TransitionGroup>
@@ -111,9 +111,7 @@ const daysInfo = inject('daysInfo')
 
 // 计算属性
 const cellClasses = computed(() => ({
-  'border-r': (props.index + 1) % 7 === 0,
-  'border-b':
-    Math.floor(props.index / 7) === Math.floor((daysInfo.length - 1) / 7),
+  'border-r': (props.index + 1) % 7 !== 0,
   'bg-blue-50': props.day.isToday,
   'bg-gray-50 text-gray-400': props.day.disable,
   'bg-orange-50': props.isActive,

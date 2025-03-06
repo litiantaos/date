@@ -10,7 +10,7 @@ const getBaseUrl = (path) => {
   if (isProd) {
     // 生产环境直接使用完整URL
     if (path.startsWith('/hitokoto')) {
-      return `https://v1.hitokoto.cn${path.replace('/hitokoto', '')}`
+      return `https://v1.hitokoto.cn`
     } else if (path.startsWith('/jinrishici')) {
       return `https://v2.jinrishici.com${path.replace('/jinrishici', '')}`
     }
@@ -21,7 +21,13 @@ const getBaseUrl = (path) => {
 }
 
 const fetchFromHitokoto = async () => {
-  const url = getBaseUrl('/hitokoto')
+  const url = getBaseUrl('/hitokoto', {
+    method: 'GET',
+    mode: 'cors',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
   const response = await fetch(url)
   return response.json()
 }
@@ -29,7 +35,12 @@ const fetchFromHitokoto = async () => {
 const fetchFromJinrishici = async (token) => {
   const url = getBaseUrl('/jinrishici/sentence')
   const response = await fetch(url, {
-    headers: token ? { 'X-User-Token': token } : {},
+    method: 'GET',
+    mode: 'cors',
+    headers: {
+      'Content-Type': 'application/json',
+      ...(token ? { 'X-User-Token': token } : {}),
+    },
   })
   const data = await response.json()
   return data.data

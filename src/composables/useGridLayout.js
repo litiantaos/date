@@ -4,7 +4,7 @@ const GRID_COLS = 7
 const CELL_GAP = 16
 const EXPANDED_CELL_HEIGHT_RATIO = 0.6
 const EXPANDED_CELL_WIDTH_RATIO = 0.75
-const VIEWPORT_CENTER_Y_RATIO = 2.5
+const VIEWPORT_CENTER_Y_RATIO = 3
 
 export const useGridLayout = (viewport, calendarDays) => {
   const rows = computed(() => Math.ceil(calendarDays.value.length / GRID_COLS))
