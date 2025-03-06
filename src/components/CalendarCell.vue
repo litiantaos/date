@@ -95,7 +95,7 @@
 </template>
 
 <script setup>
-import { ref, watch, computed, inject } from 'vue'
+import { ref, watch, computed } from 'vue'
 import { fetchSentence } from '../utils/sentences'
 
 const props = defineProps({
@@ -105,9 +105,6 @@ const props = defineProps({
   isExpanded: Boolean,
   isActive: Boolean,
 })
-
-// 注入 daysInfo 用于边框判断
-const daysInfo = inject('daysInfo')
 
 // 计算属性
 const cellClasses = computed(() => ({

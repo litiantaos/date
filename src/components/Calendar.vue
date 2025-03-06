@@ -40,7 +40,7 @@
 </template>
 
 <script setup>
-import { computed, ref, onMounted, onUnmounted, provide } from 'vue'
+import { computed, ref, onMounted, onUnmounted } from 'vue'
 import chineseDays from 'https://esm.run/chinese-days'
 import CalendarNav from './CalendarNav.vue'
 import CalendarCell from './CalendarCell.vue'
@@ -167,9 +167,6 @@ const handleTodayClick = ({ isCurrentMonth }) => {
     }
   }
 }
-
-// 提供数据给子组件
-provide('daysInfo', daysInfo)
 
 // console.log(daysInfo.value)
 </script>
